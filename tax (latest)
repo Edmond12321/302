@@ -1,0 +1,123 @@
+print("Salaries Tax Computation")
+print("Year of assessment:2018/19")
+print("Please enter you and your spouse's yearly salary")
+print("Please enter husband's yearly salary:")
+husband = int(input())
+print("Please enter wife's yearly salary:")
+wife = int(input())
+
+#tax of husband
+husband1 = husband-132000
+husband2 = int(0)
+
+#deuction of husband
+if husband1<0:					#In case if there is negative value
+	husband1 = 0
+	husband2 = 0
+else:
+	if husband<85200:			#$7100*12
+		husband2 = 0
+	else:
+		if husband<360000:		#$30000*12
+			husband2 = husband*0.05
+		else:
+			husband2 = 18000		#>$30000*12
+		
+#Net Chargeable Income of Husband
+husband3 = husband1-husband2
+husband4 = int(0)
+
+if husband>2040000:
+	husband4 = (husband-18000)*0.15
+else:
+	if husband3<50000:
+		husband4 = husband3*0.02
+	else:
+		if husband3<100000:
+			husband4 = 1000+(husband3-50000)*0.06
+		else:
+			if husband3<150000:
+				husband4 = 4000+(husband3-100000)*0.1
+			else:
+				if husband3<200000:
+					husband4 = 9000+(husband3-150000)*0.14
+				else:
+					husband4 = 16000+(husband3-200000)*0.17
+				
+				
+#tax of wife
+wife1 = wife-132000
+wife2 = int(0)
+
+#deduction of wife
+if wife1<0:					#In case there is negative value
+	wife1 = 0
+	wife2 = 0
+else:	
+	if wife<85200:			#$7100*121461
+		wife2 = 0
+	else:
+		if wife<360000:		#$30000*12
+			wife2 = wife*0.05
+		else:
+			wife2 = 18000		#>$30000*12
+		
+#Net Chargeable Income of Wife
+wife3 = wife1-wife2
+wife4 = int(0)
+
+if wife>2040000:
+	wife4 = (wife-18000)*0.15
+else:
+	if wife3<50000:
+		wife4 = wife3*0.02
+	else:
+		if wife3<100000:
+			wife4 = 1000+(wife3-50000)*0.06
+		else:
+			if wife3<150000:
+				wife4 = 4000+(wife3-100000)*0.1
+			else:
+				if wife3<200000:
+					wife4 = 9000+(wife3-150000)*0.14
+				else:
+					wife4 = 16000+(wife3-200000)*0.17
+				
+#Under Joint Assessment
+UJA = husband+wife
+UJA1 = husband2+wife2
+UJA2 = husband3+wife3
+UJA3 = int(0)
+if UJA>3180000:
+	UJA3 = (UJA-36000)*0.15
+else:
+	if UJA2<50000:
+		UJA3 = UJA2*0.02
+	else:
+		if UJA2<100000:
+			UJA3 = 1000+(UJA2-50000)*0.06
+		else:
+			if UJA2<150000:
+				UJA3 = 4000+(UJA2-100000)*0.1
+			else:
+				if UJA2<200000:
+					UJA3 = 9000+(UJA2-150000)*0.14
+				else:
+					UJA3 = 16000+(UJA2-200000)*0.17
+UJA4 = husband4+wife4
+
+#Computation of Estimated Salaries Tax Liabilities
+print("			" + "Under Separate Taxation" + "		" + "Under Joint Assessment")
+print("\n")
+print("			" + "Husband" + "		" + "Wife")
+print("Total Income:" + "		" + str("%.0f" % husband) + "		" + str("%.0f" % wife) + "		" + str("%.0f" % UJA))
+print("\n")
+print("Deductions:" + "		" + str("%.0f" % husband2) + "		" + str("%.0f" % wife2) + "		" + str("%.0f" % UJA1))
+print("\n")
+print("Allowances:" + "		" + "%.0f" % 132000 + "		" + "%.0f" % 132000 + "		" + "%.0f" % 264000)
+print("\n")
+print("Net Chargeable Income:" + "	" + str("%.0f" % husband3) + "		" + str("%.0f" % wife3) + "		" + str("%.0f" % UJA2))
+print("\n")
+print("Tax Payable:" + "		" + str("%.0f" % husband4) + "		" + str("%.0f" % wife4) + "		" + str("%.0f" % UJA3))
+print("\n")
+print("Total Tax Payable:" + "			" + str("%.0f" % (husband4+wife4)) + "			" + str("%.0f" % UJA3))
